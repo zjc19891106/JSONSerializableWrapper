@@ -73,9 +73,9 @@ class Person : public nlohmann::JSONSerializable<Person> {//If you want to use r
 public:
     std::string name;
     int age;
-    Address homeAddress;                // 嵌套对象
-    Address workAddress;                // 嵌套对象
-    std::vector<Address> pastAddresses; // 嵌套对象数组
+    Address homeAddress;                // nest object
+    Address workAddress;                // nest object
+    std::vector<Address> pastAddresses; // nest objects
     
     Person(const std::string& n = "", int a = 0)
         : name(n), age(a) {
@@ -92,7 +92,6 @@ void printJson(const std::string& label, const std::string& json) {
     std::cout << json << std::endl;
 }
 
-// 使用示例
 void testSerialization() {
     // Validate class serializable
     static_assert(nlohmann::is_serializable<User>::value, "User must be serializable");//If you want to use rapidjson, you can use rapidjson::is_serializable<User>::value
