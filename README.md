@@ -23,7 +23,7 @@ enum class MyEnum {
 
 
 // User class for test
-class User : public nlohmann::JSONSerializable<User> {//If you want to use rapidjson, you can use rapid::JSONSerializable<User>
+class User : public nlohmann::JSONSerializable<User> {//If you want to use rapidjson, you can use rapidjson::JSONSerializable<User>
 private:
     std::string name;
     int age;
@@ -38,7 +38,7 @@ public:
         registerProperty("email", email);
         // Register enum property
         registerEnum("enumValue", enumValue);
-        // Register enum values for EnumSerializer,if you want to use rapidjson, you can use rapid::EnumSerializer<MyEnum>::instance()
+        // Register enum values for EnumSerializer,if you want to use rapidjson, you can use rapidjson::EnumSerializer<MyEnum>::instance()
         auto& serializer = nlohmann::EnumSerializer<MyEnum>::instance();
         serializer.registerValue("Value1", MyEnum::Value1);
         serializer.registerValue("Value2", MyEnum::Value2);
@@ -56,7 +56,7 @@ public:
     MyEnum getEnumValue() const { return enumValue; }
 };
 
-class Address : public nlohmann::JSONSerializable<Address> {//If you want to use rapidjson, you can use rapid::JSONSerializable<Address>
+class Address : public nlohmann::JSONSerializable<Address> {//If you want to use rapidjson, you can use rapidjson::JSONSerializable<Address>
 public:
     std::string street;
     std::string city;
@@ -71,7 +71,7 @@ public:
 };
 
 // 个人类
-class Person : public nlohmann::JSONSerializable<Person> {//If you want to use rapidjson, you can use rapid::JSONSerializable<Person>
+class Person : public nlohmann::JSONSerializable<Person> {//If you want to use rapidjson, you can use rapidjson::JSONSerializable<Person>
 public:
     std::string name;
     int age;
@@ -97,8 +97,8 @@ void printJson(const std::string& label, const std::string& json) {
 // 使用示例
 void testSerialization() {
     // Validate class serializable
-    static_assert(nlohmann::is_serializable<User>::value, "User must be serializable");//If you want to use rapidjson, you can use rapid::is_serializable<User>::value
-    static_assert(nlohmann::is_serializable<Address>::value, "Address must be serializable");//If you want to use rapidjson, you can use rapid::is_serializable<Address>::value
+    static_assert(nlohmann::is_serializable<User>::value, "User must be serializable");//If you want to use rapidjson, you can use rapidjson::is_serializable<User>::value
+    static_assert(nlohmann::is_serializable<Address>::value, "Address must be serializable");//If you want to use rapidjson, you can use rapidjson::is_serializable<Address>::value
     
     // create user & encode
     User user;
